@@ -30,19 +30,9 @@ class WorkSpaceButtonsPanel:
     bl_category = "Tool"
 
 
-class ADDON_PT_main(WorkSpaceButtonsPanel, Panel):
-    bl_label = "Add-on Manager"
-    bl_options = {'DEFAULT_CLOSED'}
-
-    def draw(self, context):
-        workspace = context.workspace
-
-        layout = self.layout
-        layout.use_property_split = True
-        layout.use_property_decorate = False
-
 class ADDON_PT_addon_manager(WorkSpaceButtonsPanel, Panel):
     bl_label = "Add-on Manager"
+    bl_options = {'DEFAULT_CLOSED'}
     bl_idname = "ADDON_PT_addon_manager"
 
     def draw(self, context):

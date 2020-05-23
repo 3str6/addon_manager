@@ -1,5 +1,6 @@
 # Blender Add-on: addon_manager(experimental)
 addon_managerはアドオンを手軽に管理するための実験的なBlenderアドオンです。  
+動作中のアドオンを無効化するとエラーが起きる場合もあると思いますので、自己責任での使用をお願いします。
 サイドバーのツールタブから、アドオンの有効化/無効化を設定できます。  
 Blenderの「アドオンをフィルタリング」機能から作成しました。  
 元ネタ: scripts\startup\bl_ui\properties_workspace.py  

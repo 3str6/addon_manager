@@ -1,68 +1,84 @@
-# addon_manager
-Blender Add-on: Add-on Manager
-
-# workspace_importer
-workspace_importerはスタートアップファイルに保存されているワークスペースをインポートするアドオンです。  
-他ユーザーが作成した.blendのワークスペースを、簡単に自分のワークスペースに切り替えることができます。  
+# Blender Add-on: addon_manager(experimental)
+addon_managerはアドオンを手軽に管理するための実験的なBlenderアドオンです。  
+サイドバーのツールタブから、アドオンの有効化/無効化を設定できます。  
+Blenderの「アドオンをフィルタリング」機能から作成しました。  
+元ネタ: scripts\startup\bl_ui\properties_workspace.py  
 <br>
-workspace_importer can import Workspace from startup.blend.  
-In other's .blend file you can easily use your own Workspace Settings.  
+This is an experimental Blender Add-on. Made from 'Filter Add-ons' function of Blender.  
+addon_manager can operate Add-ons enabling/disabling from Tool tab.  
+Original: scripts\startup\bl_ui\properties_workspace.py  
 <br>
-![アドオン画像](./Doc/workspace_importer.png)
+![アドオン画像](./Doc/addon_manager.png)
 <br>
 ## 導入方法_Installation
-最新版ダウンロードは[こちら](https://github.com/3str6/workspace_importer/releases/download/v1.0/workspace_importer.zip)  
-1.編集 > プリファレンス... > アドオン > インストール > ダウンロードした.zipを選択します。  
-2.下のリストに「User Interface: Workspace Importer」が表示されるのでチェックを入れて有効化します。  
-3.3Dビュー > サイドバー（Nキー） > ツール タブ > Workspace Importer　が追加されています。  
+最新版ダウンロードは[こちら](https://github.com/3str6/addon_manager/releases/download/v1.0/addon_manager.zip)  
+1.編集 > プリファレンス... > アドオン > インストール > ダウンロードしたaddon_manager.zipを選択します。  
+2.下のリストに「Development: Add-on Manager」が表示されるのでチェックを入れて有効化します。  
+3.3Dビュー > サイドバー（Nキー） > ツール タブ > Add-on Manager が追加されます。  
 <br>
-Download from [here](https://github.com/3str6/workspace_importer/releases/download/v1.0/workspace_importer.zip)  
-1.Edit > Preference... > Add-on > Install > Select the downloaded workspace_importer.zip.  
-2.Enable 'User Interface: Workspace Importer'.  
-3.View3d > Sidebar(N-key) > Tool Tab > Workspace Importer Panel is added.  
+Download from [here](https://github.com/3str6/addon_manager/releases/download/v1.0/addon_manager.zip)  
+1.Edit > Preference... > Add-on > Install > Select the downloaded addon_manager.zip.  
+2.Enable 'Development: Add-on Manager'.  
+3.View3d > Sidebar(N-key) > Tool Tab > Add-on Manager is added.  
 <br> 
 ## 機能一覧_Functions
-### インポート_Import  
-  スタートアップファイルに保存されているワークスペースをインポートします。  
-  Make Activeにチェックを入れると、現在のワークスペースがインポートしたワークスペースに切り替わります。  
-  元に戻す(Ctrl+z)不可の操作です。  
+本アドオンはアドオンの保存場所（ディレクトリ）毎にアドオンを表示しています。  
+アドオンの保存場所は公式マニュアルから確認できます。  
+今回は下記マニュアルにあるSYSTEMディレクトリには対応していません。  
+https://docs.blender.org/manual/en/latest/advanced/blender_directory_layout.html  
 <br>
-  Import the Workspace from startup.blend.
-  When Make Active is checked, current Workspace wil be switched to the imported one.  
-  This operation can't undo(Ctrl+z).  
+This Add-on show Add-ons depending on the directories in which they are saved.  
+You can see where your Add-ons are saved from Blender Manual.  
+And I didn't implement the SYSTEM directory.  
+https://docs.blender.org/manual/en/latest/advanced/blender_directory_layout.html
+### User
+  ユーザーフォルダに保存されているアドオンを表示します。  
+  例：C:\Users\ユーザー名\AppData\Roaming\Blender Foundation\Blender\2.82\scripts\addons  
 <br>
-### 削除_Delete Other Workspaces  
-  現在開いているワークスペース以外のワークスペースを全て削除します。  
-  元に戻す(Ctrl+z)不可の操作です。  
+  Show Add-ons which are saved in USER Directory.  
+  e.g. C:\Users\USER_NAME\AppData\Roaming\Blender Foundation\Blender\2.82\scripts\addons  
 <br>
-  Delete all Workspaces except for the current active one.  
-  This operation can't undo(Ctrl+z).  
+### Pref
+  ユーザーが任意に設定したスクリプトパスに保存されているアドオンを表示します。  
+  例：編集 > プリファレンス... > ファイルパス > データ > スクリプト で指定されたフォルダ  
+<br>
+  Show Add-ons which are saved in the user's scriptpath.  
+  e.g. Edit > Preference... > File Paths > Data > Scripts  
+<br>
+### Local
+  最初からBlenderにインストールされているアドオンを表示します。  
+  例：C:\Program Files\Blender Foundation\Blender 2.82\2.82\scripts\addons  
+<br>
+  Show Add-ons which are installed in Blender.
+  e.g. C:\Program Files\Blender Foundation\Blender 2.82\2.82\scripts\addons  
+<br>
+### Enabled Add-ons Only
+  有効化されているアドオンのみを表示します。   
+<br>
+  Show enabled Add-ons only.  
 <br>
 ## 公式の機能_Blender Functions
   本アドオンの機能はすべて公式の機能で代替できます。  
   Blenderには以下のような機能があります。  
-  Blender has tha same function as this Add-on.  
-### 常にスタートアップ設定のワークスペースで.blendファイルを開く  
-  編集 > プリファレンス... > セーブ＆ロード > Blendファイル > UIをロード  
+  Blender has tha same functions as this Add-on.  
+### アドオンを有効化する 
+  編集 > プリファレンス... > アドオン > 対象アドオンにチェックを入れる  
 <br>
-  Always open .blend with Startup-setting Workspaces.  
-  Edit > Preference... > Sace & Load > Blend Files > Load UI  
+  Enable Add-ons.  
+  Edit > Preference... > Add-ons > Check the Add-on.  
 <br>
-### スタートアップ設定のWorkspaceで.blendファイルを開く  
-  ファイル > 開く... > オプション（歯車マーク） > UIをロード  
+### アドオンを無効化する
+  編集 > プリファレンス... > アドオン > 対象アドオンのチェックを外す  
 <br>
-  Open a .blend with Startup-setting Workspaces.  
-  File > Open... > Option Load UI  
+  Disable Add-ons.
+  Edit > Preference... > Add-ons > Uncheck the Add-on.  
 <br>
-### ワークスペースを追加する  
-  ワークスペースを追加（+） > 全般 > ワークスペース名  
+### アドオンをフィルタリング
+  3Dビュー > サイドバー（Nキー） > ツール タブ > ワークスペース > アドオンをフィルタリング  
+  フィルタリング設定は現在開いている.blendファイルの現在使用しているWorkspaceに保存されます。  
+  アドオンの有効化/無効化とは異なり、.blendファイル毎の設定です。  
+  Blenderの共通設定として使用したい場合は、startup.blendに設定を保存します。  
 <br>
-  Add Workspace  
-  Add Workspace > Genaral > Workspace name  
-<br>
-### ワークスペースを削除する  
-  ワークスペース名を右クリック > 削除  
-<br>
-  Delete Workspace  
-  Right Click on Workspace name > Delete  
+  Filter Add-ons  
+  View3d > Sidebar(N-key) > Tool Tab > Workspace > Filter Add-ons  
 <br>
